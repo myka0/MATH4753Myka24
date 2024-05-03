@@ -1,0 +1,96 @@
+---
+title: "What the Package Does"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{What the Package Does}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(MATH4753Myka24)
+```
+
+# Introduction
+
+The MATH4753Myka24 package provides a collection of functions for various statistical computations and simulations. This vignette serves as a guide to understanding and utilizing these functions effectively.
+
+
+## Plot a normal distribution: `myncurve`
+
+The `myncurve` function plots a normal distribution and calculates cumulative probability up to a specified value. Example:
+
+```{r}
+# Plot a normal distribution with mean=4, sigma=2, and calculate cumulative probability up to 3
+myncurve(4, 2, 3)
+```
+
+Explanation: This code plots a normal distribution with a mean of 4 and a standard deviation of 2. It shades the area under the curve up to the value of 3 and calculates the cumulative probability up to that point.
+
+## Monte Carlo simulation: `mycltu`
+
+The `mycltu` function generates a Monte Carlo simulation for estimating the distribution of sample means drawn from a uniform distribution. Example:
+
+```{r}
+# Generate a Monte Carlo simulation with sample size = 100 and 1000 iterations
+mycltu(100, 1000)
+```
+
+Explanation: This code generates a Monte Carlo simulation with a sample size of 100 and 1000 iterations. It plots a histogram and density plot of the sample means along with theoretical density curves.
+
+
+## Maximum Likelihood Estimation: `mymaxlik`
+
+The `mymaxlik` function estimates the maximum likelihood of parameters for repeated sampling from the same distribution. Example:
+
+```{r}
+# Example with binomial distribution
+y <- c(3, 3, 4, 3, 4, 5, 5, 4)
+logbin <- function(x, param) log(dbinom(x, prob = param, size = 20))
+mymaxlik(logbin, y, seq(0, 1, length = 1000), main = "Binomial n = 20")
+```
+
+Explanation: This code demonstrates the usage of `mymaxlik` function with a binomial distribution likelihood function.
+
+
+## Bootstrap Confidence Interval Estimation: `myboot`
+
+The `myboot` function calculates bootstrap confidence intervals for a given statistic based on resampling with replacement. Example:
+
+```{r}
+# Generate bootstrap confidence interval for mean with 10000 iterations
+set.seed(42)
+data <- rnorm(100, mean = 10, sd = 2)
+boot_result <- myboot(iter = 10000, x = data, fun = "mean", alpha = 0.05)
+boot_result$ci
+```
+
+Explanation: This code computes a bootstrap confidence interval for the mean of a dataset with 10000 iterations and a significance level of 0.05.
+
+
+## Dataset: fire
+
+The `fire` dataset contains information about home damage from fire, including the distance from the fire station and the amount of damage in thousands of dollars.
+
+```{r}
+# Load the fire dataset
+data(fire)
+
+# Display the structure of the dataset
+str(fire)
+
+# Display the first few rows of the dataset
+head(fire)
+```
+
+Explanation:
+
+    The fire dataset consists of 15 rows and 2 variables: DISTANCE (distance from the fire station in miles) and DAMAGE (amount of damage in thousands of dollars).
+    You can access more information about the dataset and its source in the documentation provided.

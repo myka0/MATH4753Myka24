@@ -11,3 +11,15 @@ LazyData: true
 RoxygenNote: 7.3.1
 URL: https://github.com/myka0/MATH4753Myka24
 BugReports: https://github.com/myka0/MATH4753Myka24/issues
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
+Imports: 
+  graphics,
+  grDevices,
+  stats
+Config/testthat/edition: 3
+Depends: 
+    R (>= 2.10)
+VignetteBuilder: knitr
